@@ -227,29 +227,6 @@ docker compose up -d
 
 https-portal obtendrá automáticamente el certificado SSL de Let's Encrypt y redirigirá el tráfico HTTPS al contenedor de WordPress.
 
----
-
-## URL del sitio web
-
-**[https://](https://walter3.servehalflife.com)**
-
----
-
-## Comandos útiles
-
-```bash
-# Ver logs de todos los servicios
-docker compose logs -f
-
-# Ver logs de un servicio específico
-docker compose logs -f wordpress
-
-# Parar todos los servicios
-docker compose down
-
-# Parar y eliminar volúmenes (¡borra datos!)
-docker compose down -v
-```
 
 ![alt text](image-2.png)
 ![alt text](image-1.png)
