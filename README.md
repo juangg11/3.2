@@ -212,7 +212,7 @@ docker compose ps
 ### Configurar el .env
 
 ```env
-DOMAINS=tudominio.com -> http://wordpress:8080
+DOMAINS=walter3.servehalflife.com -> http://wordpress:8080
 STAGE=production
 ```
 
