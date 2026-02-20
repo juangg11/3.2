@@ -1,16 +1,5 @@
 # Despliegue de WordPress con Docker y Docker Compose en AWS
 
-## Introducción
-
-En esta práctica se realiza el despliegue de un sitio WordPress en Amazon Web Services (AWS) utilizando contenedores Docker y Docker Compose. Los servicios desplegados son:
-
-- **WordPress** (imagen `bitnami/wordpress`)
-- **MySQL** (imagen `mysql`)
-- **phpMyAdmin** (imagen `phpmyadmin/phpmyadmin`)
-- **HTTPS-Portal** (imagen `steveltn/https-portal`)
-
----
-
 ## 1. Creación de la instancia EC2 en AWS
 
 Se creó una instancia EC2 con las siguientes características:
@@ -19,18 +8,6 @@ Se creó una instancia EC2 con las siguientes características:
 - **Tipo de instancia:** t2.small
 - **Almacenamiento:** 20 GB (gp2)
 - **Grupo de seguridad:** Se abrieron los puertos 22 (SSH), 80 (HTTP), 443 (HTTPS), 8080 (WordPress) y 8081 (phpMyAdmin)
-
-### Pasos en la consola de AWS:
-
-1. Acceder a **EC2 > Launch Instance**.
-2. Seleccionar la AMI **Ubuntu Server 22.04 LTS**.
-3. Elegir el tipo de instancia **t2.small**.
-4. En **Configure Storage**, establecer 20 GB.
-5. En **Security Group**, añadir reglas de entrada para los puertos 22, 80, 443, 8080 y 8081.
-6. Crear o seleccionar un par de claves para acceso SSH.
-7. Lanzar la instancia.
-
----
 
 ## 2. Instalación de Docker y Docker Compose
 
@@ -111,23 +88,6 @@ WORDPRESS_EMAIL=user@example.com
 DOMAINS=tudominio.com -> http://wordpress:8080
 STAGE=production
 ```
-
-> ⚠️ **Importante:** En un entorno de producción real, las contraseñas deben ser robustas y el archivo `.env` nunca debe subirse a un repositorio público.
-
----
-
-## 5. Configuración del archivo docker-compose.yml
-
-### Descripción general
-
-El archivo define 4 servicios, 2 redes y 3 volúmenes persistentes.
-
-### Redes
-
-Se definen dos redes para aislar los servicios:
-
-- **frontend-network:** Conecta `wordpress`, `phpmyadmin` y `https-portal`. Estos servicios exponen puertos al host.
-- **backend-network:** Conecta `wordpress`, `phpmyadmin` y `mysql`. El servicio `mysql` **no expone puertos al host**, garantizando que solo es accesible desde los contenedores de la red backend.
 
 ### Servicio: mysql
 
